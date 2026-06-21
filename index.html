@@ -21,14 +21,14 @@
         }
 
         body {
-            background-color: #0a0a0a;
+            background-color: #080a10;
             color: #ffffff;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* 裝飾背景：多重不規則漸層（隨網頁滾動固定） */
+        /* 固定的動態背景光圈 */
         .bg-glows {
             position: fixed;
             top: 0;
@@ -44,7 +44,7 @@
             right: -5%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(88, 101, 242, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.12) 0%, transparent 70%);
         }
         .blob-2 {
             position: absolute;
@@ -52,7 +52,7 @@
             left: -10%;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(88, 101, 242, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.08) 0%, transparent 70%);
         }
 
         /* 內容外殼 */
@@ -61,44 +61,51 @@
             z-index: 1;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
 
-        /* 字體與標題控制 */
+        /* 標題設定 */
         h1, h2, h3 {
             color: #fff;
             font-family: 'Urbanist', sans-serif;
         }
 
-        h1 {
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        header h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             letter-spacing: -1px;
             margin-bottom: 15px;
-            text-align: center;
         }
-        h1 span {
-            color: #5865f2;
+        
+        /* ✨ 已修正：補上標準屬性 background-clip 消除相容性警告 */
+        header h1 span {
+            background: linear-gradient(45deg, #5865f2, #8ea1ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
             font-size: 1.2rem;
             color: #64748b;
-            text-align: center;
-            margin-bottom: 80px;
         }
 
-        /* 各章節樣式（大卡片格式） */
+        /* 核心大外殼卡片 */
         section {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(13, 18, 30, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             border-radius: 24px;
             padding: 50px;
             margin-bottom: 40px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(16px);
         }
 
         .section-title {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 700;
             margin-bottom: 35px;
             border-left: 6px solid #5865f2;
@@ -106,7 +113,7 @@
         }
 
         .section-title span {
-            color: #5865f2;
+            color: #8ea1ff;
         }
 
         p, li, th, td {
@@ -122,26 +129,47 @@
             align-items: center;
         }
 
+        /* 核心方格佈局 */
         .tiled-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
+        /* 動態互動方格（仿影片與 Discord 質感） */
         .tile {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 30px;
+            background: rgba(30, 41, 59, 0.4);
+            padding: 35px 30px;
             border-radius: 16px;
-            border-bottom: 4px solid #5865f2;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            border-left: 1px solid rgba(255, 255, 255, 0.03);
-            border-right: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
+                        box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
+                        border-color 0.35s ease, 
+                        background-color 0.35s ease;
         }
+
+        /* 觸發 Hover 動畫 */
+        .tile:hover {
+            transform: translateY(-8px) scale(1.02);
+            background-color: rgba(30, 41, 59, 0.7);
+            border-color: #5865f2;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 
+                        0 0 25px rgba(88, 101, 242, 0.25); 
+        }
+
         .tile .icon {
             font-size: 40px;
             color: #5865f2;
             margin-bottom: 20px;
+            transition: transform 0.3s ease;
         }
+
+        .tile:hover .icon {
+            transform: scale(1.1);
+        }
+
         .tile h3 {
             font-size: 22px;
             margin-bottom: 12px;
@@ -172,7 +200,6 @@
             border-bottom: 2px solid #334155;
             padding: 18px;
             color: #fff;
-            font-weight: 600;
         }
         .table-layout td {
             padding: 18px;
@@ -217,27 +244,33 @@
             margin-bottom: 10px;
         }
 
-        /* 流程時間軸 */
+        /* 流程時間軸卡片 */
         .timeline-layout {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            position: relative;
             margin-top: 20px;
         }
         .timeline-item {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid #1e293b;
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             padding: 25px;
             border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.35s ease;
+        }
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            border-color: #5865f2;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         .timeline-item h3 {
-            color: #5865f2;
+            color: #8ea1ff;
             font-size: 20px;
             margin-bottom: 10px;
         }
 
-        /* 聯絡管道 */
+        /* 聯絡管道動態按鈕 */
         .contact-grid {
             display: flex;
             justify-content: center;
@@ -249,14 +282,20 @@
             text-align: center;
             text-decoration: none;
             color: inherit;
-            transition: transform 0.2s;
+            background: rgba(88, 101, 242, 0.05);
+            border: 1px solid rgba(88, 101, 242, 0.2);
+            padding: 25px 50px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
         }
         .contact-item:hover {
             transform: translateY(-5px);
+            background: #5865f2;
+            box-shadow: 0 10px 25px rgba(88, 101, 242, 0.4);
         }
         .contact-item i {
             font-size: 44px;
-            color: #5865f2;
+            color: #fff;
             margin-bottom: 12px;
         }
 
@@ -293,19 +332,21 @@
         <section style="text-align: center;">
             <div style="width: 60px; height: 6px; background: #5865f2; margin: 0 auto 25px;"></div>
             <h2 style="font-size: 40px; margin-bottom: 15px;">核心原則與<span>承諾</span></h2>
-            <p style="max-width: 800px; margin: 0 auto; font-size: 19px;">我們堅信隱私是一項基本人權，不僅是法律要求，更是我們服務的基石。在處理您的數據時，我們維持最高標準的誠信與透明度。</p>
+            <p style="max-width: 800px; margin: 0 auto; font-size: 19px;">我們堅信隱私是一項基本人權，不僅是法律要求，幕後更是我們服務的基石。在處理您的數據時，我們維持最高標準的誠信與透明度。</p>
         </section>
 
         <section>
-            <h2 class="section-title">政策適用範圍 (Scope)</h2>
-            <div class="tiled-content" style="grid-template-columns: 1fr 1fr;">
-                <div class="tile" style="border-bottom-color: #3b82f6;">
-                    <h3 style="color:#5865f2;">服務對象</h3>
-                    <p style="margin-top: 10px;">本政策適用於所有將 SB BOT 加入其 Discord 伺服器的管理員，以及在該環境中與機器人互動的任何終端用戶。</p>
+            <h2 class="section-title">政策適用範圍 <span>(Scope)</span></h2>
+            <div class="tiled-content" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+                <div class="tile">
+                    <div class="icon"><i class="fa-solid fa-passport"></i></div>
+                    <h3>服務對象</h3>
+                    <p>本政策適用於所有將 SB BOT 加入其 Discord 伺服器的管理員，以及在該環境中與機器人互動的任何終端用戶。</p>
                 </div>
-                <div class="tile" style="border-bottom-color: #3b82f6;">
-                    <h3 style="color:#5865f2;">涵蓋技術</h3>
-                    <p style="margin-top: 10px;">包含 Discord 斜線指令互動、伺服器元數據處理，以及任何透過我們的後端 API 傳輸的技術日誌。</p>
+                <div class="tile">
+                    <div class="icon"><i class="fa-solid fa-circle-nodes"></i></div>
+                    <h3>涵蓋技術</h3>
+                    <p>包含 Discord 斜線指令互動、伺服器元數據處理，以及任何透過我們的後端 API 傳輸的技術日誌。</p>
                 </div>
             </div>
         </section>
@@ -362,7 +403,7 @@
                 <math xmlns="http://www.w3.org/1998/Math/MathML" display="math">
                   <mi>D</mi><mo>(</mo><mi>t</mi><mo>)</mo>
                   <mo>=</mo>
-                  <msub><mi>D</mi><mn>0</mn></msub>
+                  <msub><mi>D</mn><mn>0</mn></msub>
                   <msup><mi>e</mi><mrow><mo>-</mo><mi>k</mi><mi>t</mi></mrow></msup>
                 </math>
             </div>
@@ -403,11 +444,11 @@
                     </tbody>
                 </table>
             </div>
-            <p style="margin-top:25px; font-weight:700; color:#5865f2; text-align: center;">我們承諾：絕不將任何數據販售給第三方廣告商或牟利機構。</p>
+            <p style="margin-top:25px; font-weight:700; color:#5865f2; text-align: center;">我們承諾：絕不將 any 數據販售給第三方廣告商或牟利機構。</p>
         </section>
 
         <section>
-            <h2 class="section-title">用戶掌控權 (User Rights)</h2>
+            <h2 class="section-title">用戶掌控權 <span>(User Rights)</span></h2>
             <div class="two-column highlight-numbers-layout">
                 <div>
                     <div class="number">100%</div>
@@ -422,18 +463,21 @@
 
         <section>
             <h2 class="section-title">安全性防禦協議</h2>
-            <div class="tiled-content" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-                <div class="tile" style="border-bottom-color: #10b981;">
-                    <h4 style="font-size: 18px; margin-bottom: 8px;"><i class="fa-solid fa-lock" style="color:#10b981; margin-right: 10px;"></i>加密存儲</h4>
-                    <p style="font-size: 15px;">所有核心資料庫皆採用業界標準加密保護。</p>
+            <div class="tiled-content">
+                <div class="tile">
+                    <div class="icon" style="color: #10b981;"><i class="fa-solid fa-lock"></i></div>
+                    <h3>加密存儲</h3>
+                    <p>所有核心資料庫皆採用業界標準加密保護。</p>
                 </div>
-                <div class="tile" style="border-bottom-color: #10b981;">
-                    <h4 style="font-size: 18px; margin-bottom: 8px;"><i class="fa-solid fa-user-shield" style="color:#10b981; margin-right: 10px;"></i>權限隔離</h4>
-                    <p style="font-size: 15px;">僅授權開發人員在維護時可訪問必要數據。</p>
+                <div class="tile">
+                    <div class="icon" style="color: #10b981;"><i class="fa-solid fa-user-shield"></i></div>
+                    <h3>權限隔離</h3>
+                    <p>僅授權開發人員在維護時可訪問必要數據。</p>
                 </div>
-                <div class="tile" style="border-bottom-color: #10b981;">
-                    <h4 style="font-size: 18px; margin-bottom: 8px;"><i class="fa-solid fa-broom" style="color:#10b981; margin-right: 10px;"></i>定期抹除</h4>
-                    <p style="font-size: 15px;">暫時性日誌在任務完成後將自動銷毀。</p>
+                <div class="tile">
+                    <div class="icon" style="color: #10b981;"><i class="fa-solid fa-broom"></i></div>
+                    <h3>定期抹除</h3>
+                    <p>暫時性日誌在任務完成後將自動銷毀。</p>
                 </div>
             </div>
         </section>
@@ -482,11 +526,11 @@
             <div class="contact-grid">
                 <a href="你的Discord群組連結" class="contact-item">
                     <i class="fa-brands fa-discord"></i>
-                    <p style="color:#fff; font-weight: 500;">支援伺服器</p>
+                    <p style="color:#fff; font-weight: 500; margin-top: 10px;">支援伺服器</p>
                 </a>
                 <a href="mailto:support@sb-bot.net" class="contact-item">
                     <i class="fa-solid fa-envelope"></i>
-                    <p style="color:#fff; font-weight: 500;">support@sb-bot.net</p>
+                    <p style="color:#fff; font-weight: 500; margin-top: 10px;">support@sb-bot.net</p>
                 </a>
             </div>
         </section>

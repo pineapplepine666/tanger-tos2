@@ -72,7 +72,7 @@
 
         header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         header h1 {
@@ -91,6 +91,36 @@
         .subtitle {
             font-size: 1.2rem;
             color: #64748b;
+        }
+
+        /* ✨ 語言切換選單樣式 */
+        .lang-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .lang-btn {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: #5865f2;
+            border-color: #5865f2;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
         }
 
         /* 核心大外殼卡片 */
@@ -243,112 +273,119 @@
     <div class="wrapper">
         
         <header>
-            <h1>Tang-Er <span>隱私權政策</span></h1>
-            <p class="subtitle">明確、透明且維持最小必要數據收集原則</p>
+            <h1 id="main-title">Tang-Er <span>隱私權政策</span></h1>
+            <p class="subtitle" id="main-subtitle">明確、透明且維持最小必要數據收集原則</p>
         </header>
+
+        <div class="lang-selector">
+            <button class="lang-btn active" onclick="switchLang('zh-tw', this)">🇹🇼 繁體中文</button>
+            <button class="lang-btn" onclick="switchLang('zh-cn', this)">🇨🇳 简体中文</button>
+            <button class="lang-btn" onclick="switchLang('en', this)">🇺🇸 English</button>
+        </div>
 
         <section style="text-align: center;">
             <div style="width: 60px; height: 6px; background: #5865f2; margin: 0 auto 25px;"></div>
-            <h2 style="font-size: 40px; margin-bottom: 15px;">數據收集聲明</h2>
-            <p style="max-width: 800px; margin: 0 auto; font-size: 19px;">本機器人嚴格遵循最小化數據收集原則，僅記錄維持核心功能運作與維護系統安全所需的必要資訊，絕不收集、不保留任何無關隱私。</p>
+            <h2 style="font-size: 40px; margin-bottom: 15px;" id="block1-title">數據收集聲明</h2>
+            <p style="max-width: 800px; margin: 0 auto; font-size: 19px;" id="block1-desc">本機器人嚴格遵循最小化數據收集原則，僅記錄維持核心功能運作與維護系統安全所需的必要資訊，絕不收集、不保留任何無關隱私。</p>
         </section>
 
         <section>
-            <h2 class="section-title">收集數據項目 <span>(Collected Data)</span></h2>
+            <h2 class="section-title" id="block2-title">收集數據項目 <span>(Collected Data)</span></h2>
             <div class="tiled-content">
                 <div class="tile">
                     <div class="icon"><i class="fa-solid fa-user-tag"></i></div>
-                    <h3>Discord 使用者名稱與 ID</h3>
-                    <p>用於識別發送指令的 Discord 用戶，確保權限系統及個人化功能正常運作。</p>
+                    <h3 id="item1-t">Discord 使用者名稱與 ID</h3>
+                    <p id="item1-d">用於識別發送指令的 Discord 用戶，確保權限系統及個人化功能正常運作。</p>
                 </div>
                 <div class="tile">
                     <div class="icon"><i class="fa-solid fa-comment-dots"></i></div>
-                    <h3>訊息內容</h3>
-                    <p><span style="color:#8ea1ff; font-weight:600;">⚠️ 僅限觸發特定指令時。</span> 機器人平時絕不監聽日常對話，僅在您主動呼叫特定功能時，讀取該指令所需的輸入文字。</p>
+                    <h3 id="item2-t">訊息內容</h3>
+                    <p id="item2-d"><span style="color:#8ea1ff; font-weight:600;">⚠️ 僅限觸發特定指令時。</span> 機器人平時絕不監聽日常對話，僅在您主動呼叫特定功能時，讀取該指令所需的輸入文字。</p>
                 </div>
                 <div class="tile">
                     <div class="icon"><i class="fa-solid fa-server"></i></div>
-                    <h3>伺服器名稱與 ID</h3>
-                    <p>記錄機器人所在的 Discord 伺服器識別資訊，用以綁定伺服器專屬設定與防護邏輯。</p>
+                    <h3 id="item3-t">伺服器名稱與 ID</h3>
+                    <p id="item3-d">記錄機器人所在的 Discord 伺服器識別資訊，用以綁定伺服器專屬設定與防護邏輯。</p>
                 </div>
                 <div class="tile">
                     <div class="icon"><i class="fa-solid fa-cubes"></i></div>
-                    <h3>Discord 元件資料</h3>
-                    <p>包含頻道 ID、角色 ID 等必要環境元件資訊，以便機器人判斷執行權限並在正確的位置發送回應。</p>
+                    <h3 id="item4-t">Discord 元件資料</h3>
+                    <p id="item4-d">包含頻道 ID、角色 ID 等必要環境元件資訊，以便機器人判斷執行權限並在正確的位置發送回應。</p>
                 </div>
                 <div class="tile">
                     <div class="icon"><i class="fa-solid fa-clock"></i></div>
-                    <h3>使用指令時的時間戳記</h3>
-                    <p>記錄您觸發指令的精確時間，主要用於計算冷卻時間 (Cooldown)、追蹤異常洗頻，以及後續的錯誤排除分析。</p>
+                    <h3 id="item5-t">使用指令時的時間戳記</h3>
+                    <p id="item5-d">記錄您觸發指令的精確時間，主要用於計算冷卻時間 (Cooldown)、追蹤異常洗頻，以及後續的錯誤排除分析。</p>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2 class="section-title">資料用途 <span>(Data Usage)</span></h2>
+            <h2 class="section-title" id="block3-title">資料用途 <span>(Data Usage)</span></h2>
             <div class="tiled-content" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
                 <div class="tile" style="border-bottom: 4px solid #10b981;">
-                    <h3 style="color:#10b981;"><i class="fa-solid fa-circle-check" style="margin-right:10px;"></i>執行核心功能</h3>
-                    <p style="margin-top: 10px;">所收集之資訊百分之百僅用於系統邏輯運算，確保機器人能針對您的指令做出精確、快速的對應回覆。</p>
+                    <h3 style="color:#10b981;" id="use1-t"><i class="fa-solid fa-circle-check" style="margin-right:10px;"></i>執行核心功能</h3>
+                    <p style="margin-top: 10px;" id="use1-d">所收集之資訊百分之百僅用於系統邏輯運算，確保機器人能針對您的指令做出精確、快速的對應回覆。</p>
                 </div>
                 <div class="tile" style="border-bottom: 4px solid #3b82f6;">
-                    <h3 style="color:#3b82f6;"><i class="fa-solid fa-bug" style="margin-right:10px;"></i>系統除錯與優化</h3>
-                    <p style="margin-top: 10px;">當程式發生崩潰或未預期錯誤時，上述數據能協助開發團隊追蹤問題發生當下的環境脈絡，進而修復 Bug 並提升穩定性。</p>
+                    <h3 style="color:#3b82f6;" id="use2-t"><i class="fa-solid fa-bug" style="margin-right:10px;"></i>系統除錯與優化</h3>
+                    <p style="margin-top: 10px;" id="use2-d">當程式發生崩潰或未預期錯誤時，上述數據能協助開發團隊追蹤問題發生當下的環境脈絡，進而修復 Bug 並提升穩定性。</p>
                 </div>
             </div>
-            <p style="margin-top:35px; font-weight:700; color:#5865f2; text-align: center; font-size: 18px;">
+            <p style="margin-top:35px; font-weight:700; color:#5865f2; text-align: center; font-size: 18px;" id="use-promise">
                 🔒 我們承諾：絕不向任何第三方販售、共享或公開您的任何數據。
             </p>
         </section>
 
         <section>
-            <h2 class="section-title">資料儲存與刪除 <span>(Storage & Deletion)</span></h2>
+            <h2 class="section-title" id="block4-title">資料儲存與刪除 <span>(Storage & Deletion)</span></h2>
             <div class="tiled-content" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
                 <div class="tile">
                     <div class="icon"><i class="fa-solid fa-database"></i></div>
-                    <h3>儲存安全性</h3>
-                    <p>所有收集的最小必要數據皆儲存在具備嚴密防護的加密資料庫中，僅供機器人核心系統調取，防止外部未授權存取。</p>
+                    <h3 id="store-t">儲存安全性</h3>
+                    <p id="store-d">所有收集的最小必要數據皆儲存在具備嚴密防護的加密資料庫中，僅供機器人核心系統調取，防止外部未授權存取。</p>
                 </div>
                 <div class="tile">
                     <div class="icon"><i class="fa-solid fa-trash-can"></i></div>
-                    <h3>刪除與申訴</h3>
-                    <p>當機器人離開伺服器時，相關配置會定期清理。用戶若需要手動清除個人相關軌跡，可隨時透過聯絡管道向開發團隊提出申請。</p>
+                    <h3 id="delete-t">刪除與申訴</h3>
+                    <p id="delete-d">當機器人離開伺服器時，相關配置會定期清理。用戶若需要手動清除個人相關軌跡，可隨時透過聯絡管道向開發團隊提出申請。</p>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2 class="section-title">政策更新 <span>(Policy Updates)</span></h2>
+            <h2 class="section-title" id="block5-title">政策更新 <span>(Policy Updates)</span></h2>
             <div class="tile" style="cursor: default;">
-                <p>我們可能會因應 Discord 官方開發者條款變更或機器人功能升級，不定期修改本隱私權政策。重大變更時，我們將會在官方支援管道或透過機器人公告通知用戶。建議您定期查閱本網頁以掌握最新修正內容。</p>
+                <p id="update-p">我們可能會因應 Discord 官方開發者條款變更或機器人功能升級，不定期修改本隱私權政策。重大變更時，我們將會在官方支援管道或透過機器人公告通知用戶。建議您定期查閱本網頁以掌握最新修正內容。</p>
             </div>
         </section>
 
         <section style="text-align: center;">
-            <h2 style="font-size: 40px; margin-bottom:15px;">聯絡我們 <span>(Contact Us)</span></h2>
-            <p style="font-size:20px; color:#5865f2; margin-bottom: 30px;">如果您對隱私數據或本政策有任何疑慮，歡迎透過以下管道與我們聯繫。</p>
+            <h2 style="font-size: 40px; margin-bottom:15px;" id="block6-title">聯絡我們 <span>(Contact Us)</span></h2>
+            <p style="font-size:20px; color:#5865f2; margin-bottom: 30px;" id="block6-desc">如果您對隱私數據或本政策有任何疑慮，歡迎透過以下管道與我們聯繫。</p>
             <div class="contact-grid">
-                <a href="https://discord.com" class="contact-item">
+                <a href="https://discord.com" target="_blank" class="contact-item">
                     <i class="fa-brands fa-discord"></i>
-                    <p style="color:#fff; font-weight: 500; margin-top: 10px;">支援伺服器</p>
+                    <p style="color:#fff; font-weight: 500; margin-top: 10px;" id="btn-dc">支援伺服器</p>
                 </a>
                 
                 <div class="contact-item" onclick="copyEmail(this)">
                     <i class="fa-solid fa-envelope"></i>
                     <p style="color:#fff; font-weight: 500; margin-top: 10px;">support@sb-bot.net</p>
-                    <div class="toast-tip">已複製到剪貼簿！</div>
+                    <div class="toast-tip" id="toast-text">已複製到剪貼簿！</div>
                 </div>
             </div>
         </section>
 
         <footer>
-            <p>© 2026 Tang-Er Supporters. 版權所有 All Rights Reserved. Developed with care by friesyummy.</p>
-            <p style="margin-top: 5px; font-size: 13px;">最後更新日期：2026/06/21</p>
+            <p id="footer-cr">© 2026 Tang-Er Supporters. 版權所有 All Rights Reserved. Developed with care by friesyummy.</p>
+            <p style="margin-top: 5px; font-size: 13px;" id="footer-date">最後更新日期：2026/06/21</p>
         </footer>
 
     </div>
 
     <script>
+        // 1. 複製 Email 函數
         function copyEmail(element) {
             const emailText = "support@sb-bot.net";
             navigator.clipboard.writeText(emailText).then(() => {
@@ -360,6 +397,168 @@
             }).catch(err => {
                 console.error('複製失敗: ', err);
             });
+        }
+
+        // 2. 多語言資料包
+        const langData = {
+            'zh-tw': {
+                mainTitle: 'Tang-Er <span>隱私權政策</span>',
+                mainSubtitle: '明確、透明且維持最小必要數據收集原則',
+                b1Title: '數據收集聲明',
+                b1Desc: '本機器人嚴格遵循最小化數據收集原則，僅記錄維持核心功能運作與維護系統安全所需的必要資訊，絕不收集、不保留任何無關隱私。',
+                b2Title: '收集數據項目 <span>(Collected Data)</span>',
+                i1t: 'Discord 使用者名稱與 ID',
+                i1d: '用於識別發送指令的 Discord 用戶，確保權限系統及個人化功能正常運作。',
+                i2t: '訊息內容',
+                i2d: '<span style="color:#8ea1ff; font-weight:600;">⚠️ 僅限觸發特定指令時。</span> 機器人平時絕不監聽日常對話，僅在您主動呼叫特定功能時，讀取該指令所需的輸入文字。',
+                i3t: '伺服器名稱與 ID',
+                i3d: '記錄機器人所在的 Discord 伺服器識別資訊，用以綁定伺服器專屬設定與防護邏輯。',
+                i4t: 'Discord 元件資料',
+                i4d: '包含頻道 ID、角色 ID 等必要環境元件資訊，以便機器人判斷執行權限並在正確的位置發送回應。',
+                i5t: '使用指令時的時間戳記',
+                i5d: '記錄您觸發指令的精確時間，主要用於計算冷卻時間 (Cooldown)、追蹤異常洗頻，以及後續的錯誤排除分析。',
+                b3Title: '資料用途 <span>(Data Usage)</span>',
+                u1t: '<i class="fa-solid fa-circle-check" style="margin-right:10px;"></i>執行核心功能',
+                u1d: '所收集之資訊百分之百僅用於系統邏輯運算，確保機器人能針對您的指令做出精確、快速的對應回覆。',
+                u2t: '<i class="fa-solid fa-bug" style="margin-right:10px;"></i>系統除錯與優化',
+                u2d: '當程式發生崩潰或未預期錯誤時，上述數據能協助開發團隊追蹤問題發生當下的環境脈絡，進而修復 Bug 並提升穩定性。',
+                uPromise: '🔒 我們承諾：絕不向任何第三方販售、共享或公開您的任何數據。',
+                b4Title: '資料儲存與刪除 <span>(Storage & Deletion)</span>',
+                st: '儲存安全性',
+                sd: '所有收集的最小必要數據皆儲存在具備嚴密防護的加密資料庫中，僅供機器人核心系統調取，防止外部未授權存取。',
+                dt: '刪除與申訴',
+                dd: '當機器人離開伺服器時，相關配置會定期清理。用戶若需要手動清除個人相關軌跡，可隨時透過聯絡管道向開發團隊提出申請。',
+                b5Title: '政策更新 <span>(Policy Updates)</span>',
+                up: '我們可能會因應 Discord 官方開發者條款變更或機器人功能升級，不定期修改本隱私權政策。重大變更時，我們將會在官方支援管道或透過機器人公告通知用戶。建議您定期查閱本網頁以掌握最新修正內容。',
+                b6Title: '聯絡我們 <span>(Contact Us)</span>',
+                b6Desc: '如果您對隱私數據或本政策有任何疑慮，歡迎透過以下管道與我們聯繫。',
+                btnDc: '支援伺服器',
+                toast: '已複製到剪貼簿！',
+                fCr: '© 2026 Tang-Er Supporters. 版權所有 All Rights Reserved. Developed with care by friesyummy.',
+                fDate: '最後更新日期：2026/06/21'
+            },
+            'zh-cn': {
+                mainTitle: 'Tang-Er <span>隐私权政策</span>',
+                mainSubtitle: '明确、透明且维持最小必要数据收集原则',
+                b1Title: '数据收集声明',
+                b1Desc: '本机器人严格遵循最小化数据收集原则，仅记录维持核心功能运作与维护系统安全所需的必要信息，绝不收集、不保留任何无关隐私。',
+                b2Title: '收集数据项目 <span>(Collected Data)</span>',
+                i1t: 'Discord 用户名與 ID',
+                i1d: '用于识别发送指令的 Discord 用户，确保权限系统及个性化功能正常运作。',
+                i2t: '消息内容',
+                i2d: '<span style="color:#8ea1ff; font-weight:600;">⚠️ 仅限触发特定指令时。</span> 机器人平时绝不监听日常对话，仅在您主动呼叫特定功能时，读取该指令所需的输入文本。',
+                i3t: '服务器名称與 ID',
+                i3d: '记录机器人所在的 Discord 服务器识别信息，用以绑定服务器专属设定与防护逻辑。',
+                i4t: 'Discord 组件数据',
+                i4d: '包含频道 ID、角色 ID 等必要环境组件信息，以便机器人判断执行权限并在正确的位置发送回应。',
+                i5t: '使用指令时的时间戳',
+                i5d: '记录您触发指令的精确时间，主要用于计算冷却时间 (Cooldown)、追踪异常刷屏，以及后续的错误排除分析。',
+                b3Title: '资料用途 <span>(Data Usage)</span>',
+                u1t: '<i class="fa-solid fa-circle-check" style="margin-right:10px;"></i>执行核心功能',
+                u1d: '所收集之信息百分之百仅用于系统逻辑运算，确保机器人能针对您的指令做出精确、快速的对应回复。',
+                u2t: '<i class="fa-solid fa-bug" style="margin-right:10px;"></i>系统除错与优化',
+                u2d: '当程序发生崩溃或未预期错误时，上述数据能协助开发团队追踪问题发生当下的环境脉络，进而修复 Bug 并提升稳定性。',
+                uPromise: '🔒 我们承诺：绝不向任何第三方贩售、共享或公开您的任何数据。',
+                b4Title: '资料储存与删除 <span>(Storage & Deletion)</span>',
+                st: '储存安全性',
+                sd: '所有收集的最小必要数据皆储存在具备严密防护的加密数据库中，仅供机器人核心系统调取，防止外部未授权存取。',
+                dt: '删除与申诉',
+                dd: '当机器人离开服务器时，相关配置会定期清理。用户若需要手动清除个人相关轨迹，可随时通过联络渠道向开发团队提出申请。',
+                b5Title: '政策更新 <span>(Policy Updates)</span>',
+                up: '我们可能会因应 Discord 官方开发者条款变更或机器人功能升级，不定期修改本隐私权政策。重大变更时，我们将会在官方支援渠道或通过机器人公告通知用户。建议您定期查阅本网页以掌握最新修正内容。',
+                b6Title: '联络我们 <span>(Contact Us)</span>',
+                b6Desc: '如果您对隐私数据或本政策有任何疑虑，欢迎通过以下渠道与我们联系。',
+                btnDc: '支援服务器',
+                toast: '已复制到剪贴簿！',
+                fCr: '© 2026 Tang-Er Supporters. 版权所有 All Rights Reserved. Developed with care by friesyummy.',
+                fDate: '最后更新日期：2026/06/21'
+            },
+            'en': {
+                mainTitle: 'Tang-Er <span>Privacy Policy</span>',
+                mainSubtitle: 'Clear, transparent, and strictly minimizing data collection',
+                b1Title: 'Data Collection Statement',
+                b1Desc: 'We strictly adhere to the principle of data minimization. We only log essential information required to operate core features and maintain system security, never collecting unrelated privacy data.',
+                b2Title: 'Collected Data Items <span>(Collected Data)</span>',
+                i1t: 'Discord Username & ID',
+                i1d: 'Used to identify the user issuing commands, ensuring the permission system and personalized features work correctly.',
+                i2t: 'Message Content',
+                i2d: '<span style="color:#8ea1ff; font-weight:600;">⚠️ Restricted to specific commands.</span> The bot never logs daily chats; it only reads input texts when you explicitly call specific features.',
+                i3t: 'Guild Name & ID',
+                i3d: 'Logs the Discord server identity where the bot is located to bind guild-specific settings and automated protection logic.',
+                i4t: 'Discord Component Data',
+                i4d: 'Includes channel IDs and role IDs to evaluate execution permissions and deliver responses in the correct channels.',
+                i5t: 'Command Timestamps',
+                i5d: 'Records the exact time you trigger a command, primarily used for cooldown calculation, rate-limit tracking, and debugging analysis.',
+                b3Title: 'Data Usage <span>(Data Usage)</span>',
+                u1t: '<i class="fa-solid fa-circle-check" style="margin-right:10px;"></i>Core Execution',
+                u1d: '100% of the collected information is used solely for system logic operations, ensuring precise and swift responses to your commands.',
+                u2t: '<i class="fa-solid fa-bug" style="margin-right:10px;"></i>Debugging & Optimization',
+                u2d: 'In the event of a crash, this data helps the development team track the context of the issue, patch bugs, and improve overall stability.',
+                uPromise: '🔒 Our Promise: We never sell, share, or disclose any of your data to third parties.',
+                b4Title: 'Storage & Deletion <span>(Storage & Deletion)</span>',
+                st: 'Storage Security',
+                sd: 'All minimally collected data is stored securely in an encrypted database, accessible only by the bot core system to prevent unauthorized access.',
+                dt: 'Deletion & Inquiries',
+                dd: 'Configurations are periodically wiped when the bot leaves a guild. Users can request manual purging of their data footprint at any time via our contact channels.',
+                b5Title: 'Policy Updates <span>(Policy Updates)</span>',
+                up: 'We may modify this privacy policy periodically to comply with Discord Developer Terms or reflect bot updates. Major changes will be notified via our support channels or bot announcements.',
+                b6Title: 'Contact Us <span>(Contact Us)</span>',
+                b6Desc: 'If you have any questions or concerns regarding your privacy data or this policy, feel free to contact us.',
+                btnDc: 'Support Server',
+                toast: 'Copied to clipboard!',
+                fCr: '© 2026 Tang-Er Supporters. All Rights Reserved. Developed with care by friesyummy.',
+                fDate: 'Last Updated: 2026/06/21'
+            }
+        };
+
+        // 3. 動態切換語言函數
+        function switchLang(lang, btn) {
+            // 切換按鈕的 active 狀態
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // 替換各區塊文字
+            const data = langData[lang];
+            document.getElementById('main-title').innerHTML = data.mainTitle;
+            document.getElementById('main-subtitle').innerText = data.mainSubtitle;
+            document.getElementById('block1-title').innerText = data.b1Title;
+            document.getElementById('block1-desc').innerText = data.b1Desc;
+            document.getElementById('block2-title').innerHTML = data.b2Title;
+            
+            document.getElementById('item1-t').innerText = data.i1t;
+            document.getElementById('item1-d').innerText = data.i1d;
+            document.getElementById('item2-t').innerText = data.i2t;
+            document.getElementById('item2-d').innerHTML = data.i2d;
+            document.getElementById('item3-t').innerText = data.i3t;
+            document.getElementById('item3-d').innerText = data.i3d;
+            document.getElementById('item4-t').innerText = data.i4t;
+            document.getElementById('item4-d').innerText = data.i4d;
+            document.getElementById('item5-t').innerText = data.i5t;
+            document.getElementById('item5-d').innerText = data.i5d;
+
+            document.getElementById('block3-title').innerHTML = data.b3Title;
+            document.getElementById('use1-t').innerHTML = data.u1t;
+            document.getElementById('use1-d').innerText = data.u1d;
+            document.getElementById('use2-t').innerHTML = data.u2t;
+            document.getElementById('use2-d').innerText = data.u2d;
+            document.getElementById('use-promise').innerText = data.uPromise;
+
+            document.getElementById('block4-title').innerHTML = data.b4Title;
+            document.getElementById('store-t').innerText = data.st;
+            document.getElementById('store-d').innerText = data.sd;
+            document.getElementById('delete-t').innerText = data.dt;
+            document.getElementById('delete-d').innerText = data.dd;
+
+            document.getElementById('block5-title').innerHTML = data.b5Title;
+            document.getElementById('update-p').innerText = data.up;
+
+            document.getElementById('block6-title').innerHTML = data.b6Title;
+            document.getElementById('block6-desc').innerText = data.b6Desc;
+            document.getElementById('btn-dc').innerText = data.btnDc;
+            document.getElementById('toast-text').innerText = data.toast;
+
+            document.getElementById('footer-cr').innerText = data.fCr;
+            document.getElementById('footer-date').innerText = data.fDate;
         }
     </script>
 

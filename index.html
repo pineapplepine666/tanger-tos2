@@ -21,7 +21,7 @@
         }
 
         body {
-            background-color: #04060a; /* 微調深色，讓網格與光暈更明顯 */
+            background-color: #04060a;
             color: #ffffff;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
@@ -38,15 +38,13 @@
             height: 100vh;
             z-index: 0;
             pointer-events: none;
-            /* 1. 基礎暗色背景 + 科技線性網格 */
             background-color: #04060a;
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-            background-size: 40px 40px; /* 網格大小 */
+            background-size: 40px 40px;
         }
 
-        /* 透過 CSS 變數由 JS 控制光暈位置 */
         .interactive-bg::before {
             content: '';
             position: absolute;
@@ -54,7 +52,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* 2. 滑鼠跟隨的聚光燈（Spotlight）效果 */
             background: radial-gradient(
                 600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
                 rgba(88, 101, 242, 0.1) 0%, 
@@ -64,7 +61,6 @@
             transition: background 0.1s ease;
         }
 
-        /* 原有的固定大光圈做為層次點綴 */
         .blob-1 {
             position: absolute;
             top: -10%;
@@ -103,7 +99,7 @@
         header h1 span {
             background: linear-gradient(45deg, #5865f2, #8ea1ff);
             -webkit-background-clip: text;
-            background-clip: text; /* 💡 已修正 VS Code 警告 */
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             color: transparent;
             display: inline-block;
@@ -318,11 +314,6 @@
                     <p id="item1-d">用於識別發送指令的 Discord 用戶，確保權限系統及個人化功能正常運作。</p>
                 </div>
                 <div class="tile">
-                    <div class="icon"><i class="fa-solid fa-comment-dots"></i></div>
-                    <h3 id="item2-t">訊息內容</h3>
-                    <p id="item2-d"><span style="color:#8ea1ff; font-weight:600;">⚠️ 僅限觸發特定指令時。</span> 機器人平時絕不監聽日常對話，僅在您主動呼叫特定功能時，讀取該指令所需的輸入文字。</p>
-                </div>
-                <div class="tile">
                     <div class="icon"><i class="fa-solid fa-server"></i></div>
                     <h3 id="item3-t">伺服器名稱與 ID</h3>
                     <p id="item3-d">記錄機器人所在的 Discord 伺服器識別資訊，用以綁定伺服器專屬設定與防護邏輯。</p>
@@ -408,10 +399,8 @@
         // 👑 核心特效：SellAuth 同款滑鼠跟隨光暈效果
         const bgEffect = document.getElementById('bg-effect');
         window.addEventListener('mousemove', (e) => {
-            // 將滑鼠的 X, Y 座標轉換為畫面的百分比或絕對像素
             const x = e.clientX;
             const y = e.clientY;
-            // 將座標傳入 CSS 變數中
             bgEffect.style.setProperty('--mouse-x', `${x}px`);
             bgEffect.style.setProperty('--mouse-y', `${y}px`);
         });
@@ -430,7 +419,7 @@
             });
         }
 
-        // 多語言切換資料儲存
+        // 多語言切換資料儲存 (已將訊息內容的 i2t 與 i2d 移除)
         const langData = {
             'zh-tw': {
                 mainTitle: '糖兒機器人 <span>隱私權政策</span>',
@@ -440,8 +429,6 @@
                 b2Title: '收集數據項目 <span>(Collected Data)</span>',
                 i1t: 'Discord 使用者名稱與 ID',
                 i1d: '用於識別發送指令的 Discord 用戶，確保權限系統及個人化功能正常運作。',
-                i2t: '訊息內容',
-                i2d: '<span style="color:#8ea1ff; font-weight:600;">⚠️ 僅限觸發特定指令時。</span> 機器人平時絕不監聽日常對話，僅在您主動呼叫特定功能時，讀取該指令所需的輸入文字。',
                 i3t: '伺服器名稱與 ID',
                 i3d: '記錄機器人所在的 Discord 伺服器識別資訊，用以綁定伺服器專屬設定與防護邏輯。',
                 i4t: 'Discord 元件資料',
@@ -476,8 +463,6 @@
                 b2Title: '收集数据项目 <span>(Collected Data)</span>',
                 i1t: 'Discord 用户名與 ID',
                 i1d: '用于识别发送指令的 Discord 用户，确保权限系统及个性化功能正常运作。',
-                i2t: '消息内容',
-                i2d: '<span style="color:#8ea1ff; font-weight:600;">⚠️ 仅限触发特定指令时。</span> 机器人平时绝不监听日常对话，仅在您主动呼叫特定功能时，读取该指令所需的输入文本。',
                 i3t: '服务器名称與 ID',
                 i3d: '记录机器人所在的 Discord 服务器识别信息，用以绑定服务器专属设定与防护逻辑。',
                 i4t: 'Discord 组件数据',
@@ -512,8 +497,6 @@
                 b2Title: 'Collected Data Items <span>(Collected Data)</span>',
                 i1t: 'Discord Username & ID',
                 i1d: 'Used to identify the user issuing commands, ensuring the permission system and personalized features work correctly.',
-                i2t: 'Message Content',
-                i2d: '<span style="color:#8ea1ff; font-weight:600;">⚠️ Restricted to specific commands.</span> The bot never logs daily chats; it only reads input texts when you explicitly call specific features.',
                 i3t: 'Guild Name & ID',
                 i3d: 'Logs the Discord server identity where the bot is located to bind guild-specific settings and automated protection logic.',
                 i4t: 'Discord Component Data',
@@ -532,7 +515,7 @@
                 dt: 'Deletion & Inquiries',
                 dd: 'Configurations are periodically wiped when the bot leaves a guild. Users can request manual purging of their data footprint at any time via our contact channels.',
                 b5Title: 'Policy Updates <span>(Policy Updates)</span>',
-                up: 'We may modify this privacy policy periodically to comply with Discord Developer Terms or reflect bot updates. Major changes will be notified via our support channels or bot announcements.',
+                up: ' We may modify this privacy policy periodically to comply with Discord Developer Terms or reflect bot updates. Major changes will be notified via our support channels or bot announcements.',
                 b6Title: 'Contact Us <span>(Contact Us)</span>',
                 b6Desc: 'If you have any questions or concerns regarding your privacy data or this policy, feel free to contact us.',
                 btnDc: 'Support Server',
@@ -555,8 +538,6 @@
             
             document.getElementById('item1-t').innerText = data.i1t;
             document.getElementById('item1-d').innerText = data.i1d;
-            document.getElementById('item2-t').innerText = data.i2t;
-            document.getElementById('item2-d').innerHTML = data.i2d;
             document.getElementById('item3-t').innerText = data.i3t;
             document.getElementById('item3-d').innerText = data.i3d;
             document.getElementById('item4-t').innerText = data.i4t;

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SB BOT - 隱私權政策 Privacy Policy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* 基礎樣式設定 */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        /* 自訂國旗語言切換器 */
+        .custom-dropdown {
+            position: fixed;
+            top: 20px;
+            right: 40px;
+            z-index: 1000;
+            font-size: 14px;
+            user-select: none;
+        }
+        .dropdown-selected {
+            background-color: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: border-color 0.2s ease;
+        }
+        .dropdown-selected:hover {
+            border-color: #5865f2;
+        }
+        .dropdown-selected i {
+            margin-left: 6px;
+            font-size: 12px;
+            color: #94a3b8;
+            transition: transform 0.2s ease;
+        }
+        .custom-dropdown.open .dropdown-selected i {
+            transform: rotate(180deg);
+        }
+        .dropdown-options {
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            background-color: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 150px;
+        }
+        .custom-dropdown.open .dropdown-options {
+            display: flex;
+        }
+        .dropdown-option {
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .dropdown-option:hover {
+            background-color: #334155;
+            color: #fff;
+        }
+        .flag {
+            font-size: 16px;
+        }
+
+        /* 左側固定導覽列 */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100vh;
+            background-color: #1e293b;
+            padding: 40px 24px;
+            box-sizing: border-box;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+
+        .bot-brand h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            color: #5865f2;
+            margin: 0 0 5px 0;
+            flex-shrink: 0;
+        }
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 40px 0 auto 0;
+            width: 100%;
+        }
+        .nav-menu li {
+            margin-bottom: 12px;
+        }
+        .nav-menu a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-menu a i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+        .nav-menu a:hover {
+            background-color: #334155;
+            color: #fff;
+        }
+
+        /* 主要內容區 */
+        .main-content {
+            margin-left: 300px;
+            padding: 80px 80px 40px 80px;
+            max-width: 900px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        h2 {
+            font-size: 26px;
+            color: #f8fafc;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        h2 i {
+            color: #5865f2;
+            margin-right: 12px;
+        }
+        p, li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        /* 聯絡按鈕網格 */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 30px;
+        }
+        .contact-box {
+            background-color: #1e293b;
+            padding: 24px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #f1f5f9;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+        .contact-box:hover {
+            transform: translateY(-4px);
+            border-color: #5865f2;
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.15);
+        }
+        .contact-box i {
+            font-size: 36px;
+            color: #5865f2;
+            margin-right: 20px;
+        }
+        .contact-info h4 {
+            margin: 0 0 6px 0;
+            font-size: 18px;
+            color: #fff;
+        }
+        .contact-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        /* 複製提示彈窗 */
+        .toast-notification {
+            position: fixed;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #10b981;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toast-notification.show {
+            bottom: 40px;
+        }
+
+        /* 頁尾版權宣告 */
+        .footer-info {
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-info .update-date {
+            font-size: 13px;
+            color: #64748b;
+        }
+        .footer-info .copyright-box {
+            font-size: 13px;
+            color: #475569;
+            text-align: right;
+            line-height: 1.6;
+        }
+        .footer-info .developer-tag {
+            color: #5865f2;
+            font-weight: 500;
+        }
+
+        /* 語系隱藏/顯示控制 */
+        .lang-content { display: none; }
+        .lang-active { display: block !important; }
+        span.lang-content { display: none; }
+        span.lang-active { display: inline !important; }
+
+        /* RWD 響應式 */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { position: relative; width: 100%; height: auto; padding: 30px 20px; }
+            .nav-menu { display: none; }
+            .main-content { margin-left: 0; padding: 40px 20px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .custom-dropdown { top: 15px; right: 20px; }
+            .footer-info { flex-direction: column; align-items: center; text-align: center; }
+            .footer-info .copyright-box { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="toast" class="toast-notification">
+        <i class="fa-solid fa-circle-check"></i>
+        <span class="lang-content zh-tw lang-active">信箱地址已成功複製！</span>
+        <span class="lang-content zh-cn">信箱地址已成功复制！</span>
+        <span class="lang-content en">Email address copied successfully!</span>
+    </div>
+
+    <div class="custom-dropdown" id="langDropdown">
+        <div class="dropdown-selected" onclick="toggleDropdown()">
+            <span class="flag" id="selectedFlag">🇹🇼</span>
+            <span id="selectedLabel">繁體中文</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="dropdown-options">
+            <div class="dropdown-option" onclick="selectLanguage('zh-tw', '🇹🇼', '繁體中文')">
+                <span class="flag">🇹🇼</span> 繁體中文
+            </div>
+            <div class="dropdown-option" onclick="selectLanguage('zh-cn', '🇨🇳', '简体中文')">
+                <span class="flag">🇨🇳</span> 简体中文
+            </div>
+            <div class="dropdown-option" onclick="selectLanguage('en', '🇺🇸', 'English (US)')">
+                <span class="flag">🇺🇸</span> English (US)
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="bot-brand">
+            <h1>SB BOT</h1>
+            <p class="lang-content zh-tw lang-active">隱私權政策</p>
+            <p class="lang-content zh-cn">隐私权政策</p>
+            <p class="lang-content en">Privacy Policy</p>
+        </div>
+        
+        <ul class="nav-menu">
+            <li><a href="#collection"><i class="fa-solid fa-database"></i> 
+                <span class="lang-content zh-tw lang-active">資料收集</span>
+                <span class="lang-content zh-cn">数据收集</span>
+                <span class="lang-content en">Data Collection</span>
+            </a></li>
+            <li><a href="#usage"><i class="fa-solid fa-chart-line"></i> 
+                <span class="lang-content zh-tw lang-active">資料用途</span>
+                <span class="lang-content zh-cn">数据用途</span>
+                <span class="lang-content en">Data Usage</span>
+            </a></li>
+            <li><a href="#storage"><i class="fa-solid fa-server"></i> 
+                <span class="lang-content zh-tw lang-active">資料安全</span>
+                <span class="lang-content zh-cn">数据安全</span>
+                <span class="lang-content en">Security</span>
+            </a></li>
+            <li><a href="#sharing"><i class="fa-solid fa-handshake-slash"></i> 
+                <span class="lang-content zh-tw lang-active">第三方分享</span>
+                <span class="lang-content zh-cn">第三方分享</span>
+                <span class="lang-content en">Sharing</span>
+            </a></li>
+            <li><a href="#rights"><i class="fa-solid fa-user-shield"></i> 
+                <span class="lang-content zh-tw lang-active">您的權利</span>
+                <span class="lang-content zh-cn">您的权利</span>
+                <span class="lang-content en">Your Rights</span>
+            </a></li>
+            <li><a href="#contact"><i class="fa-solid fa-envelope"></i> 
+                <span class="lang-content zh-tw lang-active">聯絡我們</span>
+                <span class="lang-content zh-cn">联络我们</span>
+                <span class="lang-content en">Contact Us</span>
+            </a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        
+        <section id="collection">
+            <div class="lang-content zh-tw lang-active">
+                <h2><i class="fa-solid fa-database"></i> 1. 我們收集的資料</h2>
+                <p>為了維持 <strong>SB BOT</strong>（下稱本機器人）的基本運作，我們會收集以下必要的使用互動資訊：</p>
+                <ul>
+                    <li><strong>Discord 識別碼：</strong> 包括使用者 ID（User ID）、伺服器 ID（Guild ID）與頻道 ID（Channel ID）。</li>
+                    <li><strong>指令互動數據：</strong> 您在與本機器人互動時所輸入的斜線指令（Slash Commands）與其參數紀錄。</li>
+                    <li><strong>公開設定檔：</strong> 您的 Discord 帳號名稱、頭像，以及機器人所在伺服器的設定與成員清單。</li>
+                </ul>
+            </div>
+            <div class="lang-content zh-cn">
+                <h2><i class="fa-solid fa-database"></i> 1. 我们收集的数据</h2>
+                <p>为了维持 <strong>SB BOT</strong>（下称本机器人）的基本运作，我们会收集以下必要的使用互动信息：</p>
+                <ul>
+                    <li><strong>Discord 识别码：</strong> 包括用户 ID（User ID）、服务器 ID（Guild ID）与频道 ID（Channel ID）。</li>
+                    <li><strong>指令互动数据：</strong> 您在与本机器人互动时所输入的斜线指令（Slash Commands）与其参数记录。</li>
+                    <li><strong>公开配置文件：</strong> 您的 Discord 账号名称、头像，以及机器人所在服务器的设置与成员清单。</li>
+                </ul>
+            </div>
+            <div class="lang-content en">
+                <h2><i class="fa-solid fa-database"></i> 1. Data We Collect</h2>
+                <p>To maintain the basic operations of <strong>SB BOT</strong> (hereinafter "the Bot"), we collect the following necessary interaction information:</p>
+                <ul>
+                    <li><strong>Discord Identifiers:</strong> Your User ID, Guild ID (Server ID), and Channel ID.</li>
+                    <li><strong>Command Interactions:</strong> The Slash Commands and related arguments you enter when interacting with the Bot.</li>
+                    <li><strong>Public Profile Info:</strong> Your Discord username, avatar, and the configurations/member lists of the servers the Bot is in.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="usage">
+            <div class="lang-content zh-tw lang-active">
+                <h2><i class="fa-solid fa-chart-line"></i> 2. 資料的使用方式</h2>
+                <p>我們收集的資訊嚴格限制於以下用途：</p>
+                <ul>
+                    <li>維持並執行本機器人各項核心功能（如權限控管、邏輯指令與系統回應）。</li>
+                    <li>分析錯誤日誌（Error Logs），藉此追蹤、修復程式崩潰或運行漏洞（Bugs）。</li>
+                    <li>維護系統安全，防止任何惡意干擾、洗頻（Spam）或違反 Discord 服務條款之濫用行為。</li>
+                </ul>
+            </div>
+            <div class="lang-content zh-cn">
+                <h2><i class="fa-solid fa-chart-line"></i> 2. 数据的使用方式</h2>
+                <p>我们收集的信息严格限制于以下用途：</p>
+                <ul>
+                    <li>维持并执行本机器人各项核心功能（如权限控管、逻辑指令与系统回应）。</li>
+                    <li>分析错误日志（Error Logs），借此追踪、修复程序崩溃或运行漏洞（Bugs）。</li>
+                    <li>维护系统安全，防止任何恶意干扰、洗频（Spam）或违反 Discord 服务条款之滥用行为。</li>
+                </ul>
+            </div>
+            <div class="lang-content en">
+                <h2><i class="fa-solid fa-chart-line"></i> 2. How We Use Data</h2>
+                <p>The information we collect is strictly limited to the following purposes:</p>
+                <ul>
+                    <li>Maintaining and executing the core functions of the Bot (such as permission control, command logic, and system responses).</li>
+                    <li>Analyzing error logs to track and fix software crashes or operational vulnerabilities (Bugs).</li>
+                    <li>Securing our system and preventing malicious interference, spamming, or abuse that violates Discord's Terms of Service.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="storage">
+            <div class="lang-content zh-tw lang-active">
+                <h2><i class="fa-solid fa-server"></i> 3. 資料的儲存與安全</h2>
+                <p>我們高度重視您的資料隱私與保護：</p>
+                <ul>
+                    <li>所有必要的運行數據皆存放在設有機制控管的資料庫中，僅授權的開發團隊能進行系統維護。</li>
+                    <li>暫時性的系統日誌、互動指令紀錄會在定期技術清理時**自動抹除**，不會留存多餘歷史軌跡。</li>
+                </ul>
+            </div>
+            <div class="lang-content zh-cn">
+                <h2><i class="fa-solid fa-server"></i> 3. 数据的存储与安全</h2>
+                <p>我们高度重视您的数据隐私与保护：</p>
+                <ul>
+                    <li>所有必要的运行数据皆存放在设有机制控管的数据库中，仅授权的开发团队能进行系统维护。</li>
+                    <li>暂时性的系统日志、互动指令记录会在定期技术清理时**自动抹除**，不会留存多余历史轨迹。</li>
+                </ul>
+            </div>
+            <div class="lang-content en">
+                <h2><i class="fa-solid fa-server"></i> 3. Data Storage and Security</h2>
+                <p>We highly value your privacy and data protection:</p>
+                <ul>
+                    <li>All required operational data is saved in databases with strict access control, accessible only by authorized developers for maintenance.</li>
+                    <li>Temporary system logs and interaction command records are **automatically erased** during periodic routine maintenance, leaving no unnecessary history logs.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="sharing">
+            <div class="lang-content zh-tw lang-active">
+                <h2><i class="fa-solid fa-handshake-slash"></i> 4. 第三方資料分享</h2>
+                <p>我們嚴格遵守不外洩原則：<strong>絕對不會</strong>將您的任何隱私資料、識別碼或互動紀錄販售、出借、或轉讓給第三方廣告商或營利機構。僅在執法單位出示合法程序要求時，我們才會依法律規範配合提供最基本的必要資料。</p>
+            </div>
+            <div class="lang-content zh-cn">
+                <h2><i class="fa-solid fa-handshake-slash"></i> 4. 第三方数据分享</h2>
+                <p>我们严格遵守不外泄原则：<strong>绝对不会</strong>将您的任何隐私数据、识别码或互动记录贩售、出借、或转让给第三方广告商或营利机构。仅在执法单位出示合法程序要求时，我们才会依法律规范配合提供最基本的必要数据。</p>
+            </div>
+            <div class="lang-content en">
+                <h2><i class="fa-solid fa-handshake-slash"></i> 4. Third-Party Sharing</h2>
+                <p>We maintain a strict non-disclosure policy: We will <strong>NEVER</strong> sell, rent, or lease your private data, identifiers, or logs to third-party advertisers or commercial entities. We only disclose minimal necessary data if strictly required by law enforcement agencies complying with legal statutory procedures.</p>
+            </div>
+        </section>
+
+        <section id="rights">
+            <div class="lang-content zh-tw lang-active">
+                <h2><i class="fa-solid fa-user-shield"></i> 5. 您對資料的權利</h2>
+                <p>您對自身的個人資訊擁有完全的掌控權：</p>
+                <ul>
+                    <li>如果您希望終止本機器人對您伺服器的資料讀取，您可以隨時將本機器人**移出（Kick）或封鎖（Ban）**。</li>
+                    <li>若您需要手動且徹底清除與您或您伺服器有關的所有歷史資料設定，隨時可以透過下方的聯絡方式，向開發團隊提出資料刪除申請。</li>
+                </ul>
+            </div>
+            <div class="lang-content zh-cn">
+                <h2><i class="fa-solid fa-user-shield"></i> 5. 您对数据的权利</h2>
+                <p>您对自己的个人信息拥有完全的掌控权：</p>
+                <ul>
+                    <li>如果您希望终止本机器人对您服务器的数据读取，您可以随时将本机器人**移出（Kick）或封锁（Ban）**。</li>
+                    <li>若您需要手动且彻底清除与您或您服务器有关的所有历史数据设置，随时可以通过下方的联络方式，向开发团队提出数据删除申请。</li>
+                </ul>
+            </div>
+            <div class="lang-content en">
+                <h2><i class="fa-solid fa-user-shield"></i> 5. Your Rights Over Data</h2>
+                <p>You preserve complete control over your own information:</p>
+                <ul>
+                    <li>If you wish to stop the Bot from interacting or fetching data from your server, you can **Kick or Ban** the Bot at any time.</li>
+                    <li>If you need to manually and thoroughly purge all historical settings associated with you or your server, you can reach out to the team via the contact channels below to request a complete data wipe.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="lang-content zh-tw lang-active">
+                <h2><i class="fa-solid fa-envelope"></i> 6. 聯絡我們</h2>
+                <p>若您對本隱私權政策或相關資料運作方式有任何疑問，請透過以下管道聯絡我們：</p>
+            </div>
+            <div class="lang-content zh-cn">
+                <h2><i class="fa-solid fa-envelope"></i> 6. 联络我们</h2>
+                <p>若您对本隐私权政策或相关数据运作方式有任何疑问，请通过以下渠道联络我们：</p>
+            </div>
+            <div class="lang-content en">
+                <h2><i class="fa-solid fa-envelope"></i> 6. Contact Us</h2>
+                <p>If you have any questions or requests regarding this Privacy Policy, please get in touch with us through the channels below:</p>
+            </div>
+            
+            <div class="contact-grid">
+                <a href="https://discord.gg/你的邀請連結" target="_blank" class="contact-box">
+                    <i class="fa-brands fa-discord"></i>
+                    <div class="contact-info">
+                        <h4>Discord 支援伺服器</h4>
+                        <p class="lang-content zh-tw lang-active">點擊立即加入群組 ➔</p>
+                        <p class="lang-content zh-cn">点击立即加入群组 ➔</p>
+                        <p class="lang-content en">Click to join server ➔</p>
+                    </div>
+                </a>
+                
+                <div onclick="copyEmail('your-email@example.com')" class="contact-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div class="contact-info">
+                        <h4>聯絡信箱</h4>
+                        <p id="emailText">your-email@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer-info">
+            <div class="update-date">
+                <span class="lang-content zh-tw lang-active">最後更新：2026/06/21</span>
+                <span class="lang-content zh-cn">最后更新：2026/06/21</span>
+                <span class="lang-content en">Last Updated: 2026/06/21</span>
+            </div>
+            <div class="copyright-box">
+                <div>© 2026 SB BOT Supporters. All Rights Reserved.</div>
+                <div>Developed with care by <span class="developer-tag">friesyummy</span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById('langDropdown').classList.toggle('open');
+        }
+
+        function selectLanguage(lang, flag, label) {
+            document.getElementById('selectedFlag').innerText = flag;
+            document.getElementById('selectedLabel').innerText = label;
+            document.getElementById('langDropdown').classList.remove('open');
+            
+            const elements = document.querySelectorAll('.lang-content');
+            elements.forEach(el => {
+                if (el.classList.contains(lang)) {
+                    el.classList.add('lang-active');
+                } else {
+                    el.classList.remove('lang-active');
+                }
+            });
+        }
+
+        window.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('langDropdown');
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
+
+        function copyEmail(email) {
+            navigator.clipboard.writeText(email).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }).catch(err => {
+                console.error('複製失敗: ', err);
+            });
+        }
+    </script>
+</body>
+</html>

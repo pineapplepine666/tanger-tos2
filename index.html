@@ -21,15 +21,16 @@
         }
 
         body {
-            background-color: #080a10;
+            background-color: #04060a; /* 微調深色，讓網格與光暈更明顯 */
             color: #ffffff;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
+            position: relative;
         }
 
-        /* 固定的動態背景光圈 */
-        .bg-glows {
+        /* 👑 SellAuth 同款：動態網格與滑鼠跟隨光暈背景 */
+        .interactive-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -37,21 +38,39 @@
             height: 100vh;
             z-index: 0;
             pointer-events: none;
+            /* 1. 基礎暗色背景 + 科技線性網格 */
+            background-color: #04060a;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 40px 40px; /* 網格大小 */
         }
+
+        /* 透過 CSS 變數由 JS 控制光暈位置 */
+        .interactive-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* 2. 滑鼠跟隨的聚光燈（Spotlight）效果 */
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                rgba(88, 101, 242, 0.1) 0%, 
+                rgba(88, 101, 242, 0.02) 40%,
+                transparent 70%
+            );
+            transition: background 0.1s ease;
+        }
+
+        /* 原有的固定大光圈做為層次點綴 */
         .blob-1 {
             position: absolute;
             top: -10%;
             right: -5%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(88, 101, 242, 0.12) 0%, transparent 70%);
-        }
-        .blob-2 {
-            position: absolute;
-            bottom: 10%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
             background: radial-gradient(circle, rgba(88, 101, 242, 0.08) 0%, transparent 70%);
         }
 
@@ -84,7 +103,7 @@
         header h1 span {
             background: linear-gradient(45deg, #5865f2, #8ea1ff);
             -webkit-background-clip: text;
-            background-clip: text; /* 💡 補上標準屬性，修正 VS Code 警告並確保漸變字效果正常 */
+            background-clip: text; /* 💡 已修正 VS Code 警告 */
             -webkit-text-fill-color: transparent;
             color: transparent;
             display: inline-block;
@@ -267,9 +286,8 @@
 </head>
 <body>
 
-    <div class="bg-glows">
+    <div class="interactive-bg" id="bg-effect">
         <div class="blob-1"></div>
-        <div class="blob-2"></div>
     </div>
 
     <div class="wrapper">
@@ -387,6 +405,18 @@
     </div>
 
     <script>
+        // 👑 核心特效：SellAuth 同款滑鼠跟隨光暈效果
+        const bgEffect = document.getElementById('bg-effect');
+        window.addEventListener('mousemove', (e) => {
+            // 將滑鼠的 X, Y 座標轉換為畫面的百分比或絕對像素
+            const x = e.clientX;
+            const y = e.clientY;
+            // 將座標傳入 CSS 變數中
+            bgEffect.style.setProperty('--mouse-x', `${x}px`);
+            bgEffect.style.setProperty('--mouse-y', `${y}px`);
+        });
+
+        // 一鍵複製 Email 邏輯
         function copyEmail(element) {
             const emailText = "support@sb-bot.net";
             navigator.clipboard.writeText(emailText).then(() => {
@@ -400,9 +430,10 @@
             });
         }
 
+        // 多語言切換資料儲存
         const langData = {
             'zh-tw': {
-                mainTitle: '糖兒機器人 <span>隱私權政策</span>', // 僅繁體中文大標題改為中文
+                mainTitle: '糖兒機器人 <span>隱私權政策</span>',
                 mainSubtitle: '明確、透明且維持最小必要數據收集原則',
                 b1Title: '數據收集聲明',
                 b1Desc: '本機器人嚴格遵循最小化數據收集原則，僅記錄維持核心功能運作與維護系統安全所需的必要資訊，絕不收集、不保留任何無關隱私。',
@@ -438,10 +469,10 @@
                 fDate: '最後更新日期：2026/06/21'
             },
             'zh-cn': {
-                mainTitle: '糖儿机器人 <span>隐私权政策</span>', // 僅簡體中文大標題改為中文
+                mainTitle: '糖儿机器人 <span>隐私权政策</span>',
                 mainSubtitle: '明确、透明且维持最小必要数据收集原则',
                 b1Title: '数据收集声明',
-                b1Desc: '本机器人严格遵循最小化数据收集原则，仅记录维持核心功能运作与维护 system 安全所需的必要信息，绝不收集、不保留任何无关隐私。',
+                b1Desc: '本机器人严格遵循最小化数据收集原则，仅记录维持核心功能运作与维护系统安全所需的必要信息，绝不收集、不保留任何无关隐私。',
                 b2Title: '收集数据项目 <span>(Collected Data)</span>',
                 i1t: 'Discord 用户名與 ID',
                 i1d: '用于识别发送指令的 Discord 用户，确保权限系统及个性化功能正常运作。',
@@ -465,7 +496,7 @@
                 dt: '删除与申诉',
                 dd: '当机器人离开服务器时，相关配置会定期清理。用户若需要手动清除个人相关轨迹，可随时通过联络渠道向开发团队提出申请。',
                 b5Title: '政策更新 <span>(Policy Updates)</span>',
-                up: '我们可能会因应 Discord 官方开发者条款变更或机器人功能升级，不定期修改本隐私权政策。重大变更时，我们将会在官方支援渠道 or 通过机器人公告通知用户。建议您定期查阅本网页以掌握最新修正内容。',
+                up: '我们可能会因应 Discord 官方开发者条款变更或机器人功能升级，不定期修改本隐私权政策。重大变更时，我们将会在官方支援渠道或通过机器人公告通知用户。建议您定期查阅本网页以掌握最新修正内容。',
                 b6Title: '联络我们 <span>(Contact Us)</span>',
                 b6Desc: '如果您对隐私数据 or 本政策有任何疑虑，欢迎通过以下渠道与我们联系。',
                 btnDc: '支援服务器',
@@ -474,7 +505,7 @@
                 fDate: '最后更新日期：2026/06/21'
             },
             'en': {
-                mainTitle: 'Tang-Er <span>Privacy Policy</span>', // 英文版大標題維持英文字
+                mainTitle: 'Tang-Er <span>Privacy Policy</span>',
                 mainSubtitle: 'Clear, transparent, and strictly minimizing data collection',
                 b1Title: 'Data Collection Statement',
                 b1Desc: 'We strictly adhere to the principle of data minimization. We only log essential information required to operate core features and maintain system security, never collecting unrelated privacy data.',

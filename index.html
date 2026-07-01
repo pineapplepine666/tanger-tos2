@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* 核心設計與重置 */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -27,11 +26,9 @@
             overflow-x: hidden;
             line-height: 1.6;
             position: relative;
-            /* 🔴 全域隱藏原生滑鼠，改用自訂紅色球球 */
             cursor: none; 
         }
 
-        /* 🔴 自訂紅色球球光標樣式 */
         .custom-cursor {
             width: 10px;
             height: 10px;
@@ -39,13 +36,12 @@
             border-radius: 50%;
             position: fixed;
             transform: translate(-50%, -50%);
-            pointer-events: none; /* 確保不會擋到點擊事件 */
+            pointer-events: none;
             z-index: 9999;
             transition: width 0.2s, height 0.2s, background-color 0.2s;
             box-shadow: 0 0 10px rgba(255, 51, 68, 0.8);
         }
 
-        /* 🔴 外部平滑跟隨紅色外圈 */
         .custom-cursor-follower {
             width: 30px;
             height: 30px;
@@ -55,11 +51,9 @@
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 9998;
-            /* 利用 transition 讓外圈產生延遲跟隨的吸附動效 */
             transition: transform 0.08s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
         }
 
-        /* 🔴 當滑鼠懸停在按鈕或卡片上時的特殊放大效果 */
         body.hovered .custom-cursor {
             width: 6px;
             height: 6px;
@@ -72,12 +66,10 @@
             background-color: rgba(255, 51, 68, 0.05);
         }
 
-        /* 確保所有可點擊元素的預設游標也被隱藏，避免閃爍 */
         a, button, .tile, .contact-item {
             cursor: none !important;
         }
 
-        /* 👑 動態網格與滑鼠跟隨紅色光暈背景 */
         .interactive-bg {
             position: fixed;
             top: 0;
@@ -118,7 +110,6 @@
             background: radial-gradient(circle, rgba(255, 51, 68, 0.06) 0%, transparent 70%);
         }
 
-        /* 內容外殼 */
         .wrapper {
             position: relative;
             z-index: 1;
@@ -127,7 +118,6 @@
             padding: 80px 20px;
         }
 
-        /* 標題設定 */
         h1, h2, h3 {
             color: #fff;
             font-family: 'Urbanist', sans-serif;
@@ -158,7 +148,6 @@
             color: #64748b;
         }
 
-        /* 語言切換選單樣式 */
         .lang-selector {
             display: flex;
             justify-content: center;
@@ -187,7 +176,6 @@
             box-shadow: 0 0 15px rgba(255, 51, 68, 0.4);
         }
 
-        /* 核心大外殼卡片 */
         section {
             background: rgba(13, 18, 30, 0.45);
             border: 1px solid rgba(255, 255, 255, 0.03);
@@ -214,14 +202,12 @@
             font-size: 17px;
         }
 
-        /* 核心方格佈局 */
         .tiled-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
-        /* 動態互動方格 */
         .tile {
             background: rgba(30, 41, 59, 0.4);
             padding: 35px 30px;
@@ -234,7 +220,6 @@
                         background-color 0.35s ease;
         }
 
-        /* 觸發 Hover 動畫 */
         .tile:hover {
             transform: translateY(-8px) scale(1.02);
             background-color: rgba(30, 41, 59, 0.7);
@@ -259,7 +244,6 @@
             margin-bottom: 12px;
         }
 
-        /* 聯絡管道動態按鈕 */
         .contact-grid {
             display: flex;
             justify-content: center;
@@ -289,7 +273,6 @@
             margin-bottom: 12px;
         }
 
-        /* 貼心複製成功小提示 */
         .toast-tip {
             position: absolute;
             bottom: -35px;
@@ -310,7 +293,6 @@
             opacity: 1;
         }
 
-        /* 頁尾 */
         footer {
             text-align: center;
             padding-top: 40px;
@@ -319,7 +301,6 @@
             font-size: 14px;
         }
 
-        /* 響應式調整 */
         @media (max-width: 768px) {
             section { padding: 30px 20px; }
         }
@@ -413,7 +394,7 @@
         </section>
 
         <section>
-            <h2 class="section-title" id="block5-title">政策更新 <span>(Policy Updates)</span></h2>
+            <h2 class="section-title" id="block4-title">政策更新 <span>(Policy Updates)</span></h2>
             <div class="tile" style="cursor: default;">
                 <p id="update-p">我們可能會因應 Discord 官方開發者條款變更或機器人功能升級，不定期修改本隱私權政策。我們不會通知用戶，建議您定期查閱本網頁以掌握最新修正內容。</p>
             </div>
@@ -444,28 +425,23 @@
     </div>
 
     <script>
-        // 🔴 獲取自訂游標元件
         const cursorDot = document.getElementById('cursor-dot');
         const cursorFollower = document.getElementById('cursor-follower');
         const bgEffect = document.getElementById('bg-effect');
 
-        // 同步處理滑鼠跟隨光暈與自訂紅色游標
         window.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
             
-            // 網格背景紅光暈位置
             bgEffect.style.setProperty('--mouse-x', `${x}px`);
             bgEffect.style.setProperty('--mouse-y', `${y}px`);
 
-            // 自訂核心紅點與外圈位置
             cursorDot.style.left = `${x}px`;
             cursorDot.style.top = `${y}px`;
             cursorFollower.style.left = `${x}px`;
             cursorFollower.style.top = `${y}px`;
         });
 
-        // 🔴 偵測滑鼠是否懸停在可交互元素上，觸發放大動畫
         const interactiveElements = document.querySelectorAll('a, button, .tile, .contact-item');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -476,7 +452,6 @@
             });
         });
 
-        // 一鍵複製 Email 邏輯
         function copyEmail(element) {
             const emailText = "lwx102310231023@gmail.com";
             navigator.clipboard.writeText(emailText).then(() => {
@@ -490,7 +465,6 @@
             });
         }
 
-        // 多語言切換資料儲存
         const langData = {
             'zh-tw': {
                 mainTitle: '糖兒機器人 <span>隱私權政策</span>',
@@ -508,7 +482,7 @@
                 i5d: '記錄您觸發指令的精確時間，主要用於計算冷卻時間 (Cooldown)、追蹤異常洗頻，以及後續的錯誤排除分析。',
                 b3Title: '資料用途 <span>(Data Usage)</span>',
                 u1t: '<i class="fa-solid fa-circle-check" style="margin-right:10px;"></i>執行核心功能',
-                u1d: '所收集之資訊百分之百僅用於系統邏輯運算，確保機器人能針對您的指令做出精確、快速的對應回覆。',
+                u1d: '所收集之資訊百分之百僅用於系統邏輯運算，確保機器人能針對您的指令做出精確、快速的對應回覆 overseas。',
                 u2t: '<i class="fa-solid fa-bug" style="margin-right:10px;"></i>系統除錯與優化',
                 u2d: '當程式發生崩潰或未預期錯誤時，上述數據能協助開發團隊追蹤問題發生當下的環境脈絡，進而修復 Bug 並提升穩定性。',
                 uPromise: '🔒 我們承諾：絕不向任何第三方販售、共享或公開您的任何數據。',
@@ -554,7 +528,7 @@
                 b5Title: '政策更新 <span>(Policy Updates)</span>',
                 up: '我们可能会因应 Discord 官方开发者条款变更或机器人功能升级，不定期修改本隐私权政策。我们不会通知用户，建议您定期查阅本网页以掌握最新修正內容。',
                 b6Title: '联络我们 <span>(Contact Us)</span>',
-                b6Desc: '如果您对隐私数据 or 本政策有任何疑虑，欢迎通过以下渠道与我们联系。',
+                b6Desc: '如果您对隐私数据 or 本政策有 any 疑虑，欢迎通过以下渠道与我们联系。',
                 btnDc: '支援服务器',
                 toast: '已复制到剪贴簿！',
                 fCr: '© 2026 Tang-Er Supporters. Developed with care by friesyummy.',
@@ -640,6 +614,15 @@
             document.getElementById('footer-cr').innerText = data.fCr;
             document.getElementById('footer-date').innerText = data.fDate;
         }
+        
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
+            if (event.keyCode === 123 || 
+                (event.ctrlKey && event.shiftKey && (event.keyCode === 73 || event.keyCode === 74)) || 
+                (event.ctrlKey && event.keyCode === 85)) { 
+                event.preventDefault();
+            }
+        });
     </script>
 
 </body>

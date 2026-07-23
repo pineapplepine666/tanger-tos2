@@ -393,7 +393,7 @@
                 </div>
             </div>
             <p style="margin-top:35px; font-weight:700; color:#ff3344; text-align: center; font-size: 18px;" id="use-promise">
-                🔒 我們承諾：絕不向任何第三方販售、共享或公開您的任何數據。
+                🔒 我們承諾：絕不向任何第三方販售或公開您的任何數據。
             </p>
         </section>
 
@@ -410,13 +410,6 @@
                     <h3 id="delete-t">刪除與申訴</h3>
                     <p id="delete-d">當機器人離開伺服器時，相關配置會定期清理。用戶若需要手動清除個人相關軌跡，可隨時透過聯絡管道向開發團隊提出申請。</p>
                 </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title" id="block3b-title">第三方服務 <span>(Third-Party Services)</span></h2>
-            <div class="tile" style="cursor: default;">
-                <p id="block3b-desc">本機器人使用託管於 GitHub Gist 的外部資源（不雅字清單），以維持安全過濾功能的即時更新。除此之外，本機器人不與任何第三方共享您的個人資料。</p>
             </div>
         </section>
 
@@ -522,7 +515,7 @@
                 u1d: '所收集之資訊百分之百僅用於系統邏輯運算，確保機器人能針對您的指令做出精確、快速的對應回覆 overseas。',
                 u2t: '<i class="fa-solid fa-bug" style="margin-right:10px;"></i>系統除錯與優化',
                 u2d: '當程式發生崩潰或未預期錯誤時，上述數據能協助開發團隊追蹤問題發生當下的環境脈絡，進而修復 Bug 並提升穩定性。',
-                uPromise: '🔒 我們承諾：絕不向任何第三方販售、共享或公開您的任何數據。',
+                uPromise: '🔒 我們承諾：絕不向任何第三方販售或公開您的任何數據。',
                 b4Title: '資料儲存與刪除 <span>(Storage & Deletion)</span>',
                 st: '儲存安全性',
                 sd: '所有收集的最小必要數據皆儲存在具備嚴密防護的加密資料庫中，僅供機器人核心系統調取，防止外部未授權存取。',
@@ -566,7 +559,7 @@
                 u1d: '所收集之信息百分之百仅用于系统逻辑运算，确保机器人能针对您的指令做出精确、快速的对应回复。',
                 u2t: '<i class="fa-solid fa-bug" style="margin-right:10px;"></i>系统除错与优化',
                 u2d: '当程序发生崩溃 or 未预期错误时，上述数据能协助开发团队追踪问题发生当下的环境脉络，进而修复 Bug 并提升稳定性。',
-                uPromise: '🔒 我们承诺：绝不向任何第三方贩售、共享或公开您的任何数据。',
+                uPromise: '🔒 我们承诺：绝不向任何第三方贩售或公开您的任何数据。',
                 b4Title: '资料储存与删除 <span>(Storage & Deletion)</span>',
                 st: '储存安全性',
                 sd: '所有收集的最小必要数据皆储存在具备严密防护的加密数据库中，仅供机器人核心系统调取，防止外部未授权存取。',
@@ -610,7 +603,7 @@
                 u1d: '100% of the collected information is used solely for system logic operations, ensuring precise and swift responses to your commands.',
                 u2t: '<i class="fa-solid fa-bug" style="margin-right:10px;"></i>Debugging & Optimization',
                 u2d: 'In the event of a crash, this data helps the development team track the context of the issue, patch bugs, and improve overall stability.',
-                uPromise: '🔒 Our Promise: We never sell, share, or disclose any of your data to third parties.',
+                uPromise: '🔒 Our Promise: We never sell or disclose any of your data to third parties.',
                 b4Title: 'Storage & Deletion <span>(Storage & Deletion)</span>',
                 st: 'Storage Security',
                 sd: 'All minimally collected data is stored securely in an encrypted database, accessible only by the bot core system to prevent unauthorized access.',
@@ -654,9 +647,6 @@
             document.getElementById('item8-d').innerText = data.i8d;
             document.getElementById('item9-t').innerText = data.i9t;
             document.getElementById('item9-d').innerText = data.i9d;
-
-            document.getElementById('block3b-title').innerHTML = data.b3bTitle;
-            document.getElementById('block3b-desc').innerText = data.b3bDesc;
 
             document.getElementById('block3-title').innerHTML = data.b3Title;
             document.getElementById('use1-t').innerHTML = data.u1t;
